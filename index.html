@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduNexoria — Educăm. Conectăm. Inspirăm.</title>
+<meta name="description" content="EduNexoria este o organizație neguvernamentală dedicată formării profesionale, educației non-formale, voluntariatului și acțiunilor caritabile, pentru toate categoriile de populație.">
+<style>
+/* ==========================================================================
+   EduNexoria — document unic (pentru GitHub Pages)
+   Paletă (din siglă): navy #14274E / #1E3A5F · gold #F2B705 / #C99400 · coral #E63950 / #B71F3B
+   Tipografie: Poppins (titluri) · Inter (text) · IBM Plex Mono (etichete)
+   Motiv de semnătură: nodurile conectate din siglă (hexagon + rețea)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --navy:      #14274E;
+  --navy-700:  #1E3A5F;
+  --navy-100:  #E7ECF4;
+  --gold:      #F2B705;
+  --gold-600:  #C99400;
+  --gold-100:  #FCF1CB;
+  --coral:     #E63950;
+  --coral-700: #B71F3B;
+  --coral-100: #FBE1E5;
+  --cream:     #FAF8F3;
+  --paper:     #FFFFFF;
+  --text:      #16233D;
+  --text-muted:#5C6B82;
+  --border:    #E4DFD3;
+
+  --grad-hero: linear-gradient(120deg, var(--navy) 0%, var(--navy-700) 55%, var(--coral-700) 130%);
+  --grad-cta:  linear-gradient(120deg, var(--coral) 0%, var(--gold) 100%);
+  --grad-btn:  linear-gradient(120deg, var(--coral) 0%, var(--coral-700) 100%);
+
+  --font-display:'Poppins', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+
+  --radius:20px;
+  --radius-sm:12px;
+  --container:1160px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--cream);color:var(--text);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;border-radius:var(--radius);}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+.container{max-width:var(--container);margin:0 auto;padding:0 32px;}
+section{padding:96px 0;scroll-margin-top:84px;}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.2;color:var(--navy);}
+h1{font-size:clamp(2.3rem,4.4vw,3.6rem);font-weight:800;}
+h2{font-size:clamp(1.8rem,3vw,2.4rem);}
+h3{font-size:1.28rem;}
+p{color:var(--text-muted);}
+.lede{font-size:1.15rem;color:var(--text-muted);max-width:640px;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px;}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+
+.eyebrow{font-family:var(--font-mono);font-weight:500;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--coral-700);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;}
+.eyebrow.on-dark{color:var(--gold);}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:1rem;padding:15px 28px;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--grad-btn);color:#fff;box-shadow:0 10px 24px rgba(230,57,80,.30);}
+.btn-primary:hover{box-shadow:0 14px 30px rgba(230,57,80,.40);}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 10px 24px rgba(242,183,5,.30);}
+.btn-gold:hover{background:var(--gold-600);}
+.btn-white{background:#fff;color:var(--navy-700);}
+.btn-white:hover{background:#F0F3FF;}
+.btn-outline{border-color:rgba(255,255,255,.65);color:#fff;}
+.btn-outline:hover{background:rgba(255,255,255,.12);}
+.btn-outline-navy{border-color:var(--navy);color:var(--navy);}
+.btn-outline-navy:hover{background:var(--navy);color:#fff;}
+.btn-lg{padding:18px 36px;font-size:1.05rem;}
+
+/* header / nav */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(250,248,243,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--navy);}
+.brand .mark{width:36px;height:36px;flex:none;}
+.brand b{color:var(--coral);}
+.nav-links{display:flex;align-items:center;gap:26px;}
+.nav-links a{font-size:.95rem;font-weight:600;color:var(--text);position:relative;padding:8px 0;}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:1px;height:2.5px;width:0;border-radius:3px;background:var(--grad-cta);transition:width .18s ease;}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--coral-700);}
+.nav-cta{display:flex;align-items:center;gap:16px;}
+.nav-toggle{display:none;}
+
+@media (max-width:980px){
+  .nav-links{position:fixed;inset:80px 0 0 0;background:var(--cream);flex-direction:column;gap:0;padding:12px 32px;overflow-y:auto;transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .18s ease, transform .18s ease;}
+  .nav-links.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .nav-links a{width:100%;padding:17px 0;border-bottom:1px solid var(--border);font-size:1.05rem;}
+  .nav-toggle{display:block;background:none;border:none;font-size:1.6rem;color:var(--navy);cursor:pointer;}
+  .nav-cta .btn-gold{display:none;}
+}
+
+/* footer */
+.site-footer{background:var(--navy);color:#CBD5E6;padding:68px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+.footer-grid h4{color:#fff;font-family:var(--font-display);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;font-weight:700;}
+.footer-grid a{display:block;padding:5px 0;color:#AAB8CE;font-size:.92rem;}
+.footer-grid a:hover{color:#fff;}
+.footer-brand{font-family:var(--font-display);color:#fff;font-size:1.3rem;margin-bottom:10px;font-weight:700;}
+.footer-brand b{color:var(--gold);}
+.footer-tagline{color:#8C9BB5;font-size:.92rem;max-width:280px;}
+.footer-bottom{margin-top:52px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem;color:#7C8CA6;}
+
+/* hero */
+.hero{background:var(--grad-hero);color:#fff;position:relative;overflow:hidden;padding:104px 0;}
+.hero .container{position:relative;z-index:2;}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;}
+.hero h1{color:#fff;}
+.hero p.lede{color:#DDE3F4;}
+.hero-actions{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+.hero-net{position:absolute;inset:0;z-index:1;opacity:.5;}
+.hero-photo{position:relative;border-radius:26px;overflow:hidden;box-shadow:0 28px 56px rgba(10,16,40,.35);border:4px solid rgba(255,255,255,.28);}
+.hero-photo img{border-radius:22px;aspect-ratio:4/3;object-fit:cover;}
+.floating-chip{position:absolute;background:#fff;color:var(--navy);border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:.88rem;box-shadow:0 14px 30px rgba(10,16,40,.25);}
+.floating-chip.c1{top:-16px;left:-22px;}
+.floating-chip.c2{bottom:-16px;right:-22px;}
+.floating-chip .ball{width:9px;height:9px;border-radius:50%;background:var(--gold);}
+
+/* stat strip */
+.stat-strip{background:var(--paper);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stat-strip .container{display:grid;grid-template-columns:repeat(4,1fr);padding:44px 32px;gap:8px;}
+.stat{text-align:center;border-left:1px solid var(--border);padding:0 12px;}
+.stat:first-child{border-left:none;}
+.stat .num{font-family:var(--font-display);font-size:2.15rem;font-weight:800;color:var(--coral-700);}
+.stat .label{font-size:.88rem;color:var(--text-muted);margin-top:6px;font-weight:600;}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.pillar-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:transform .15s ease, box-shadow .15s ease;}
+.pillar-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(20,39,78,.08);}
+.pillar-card .icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.4rem;}
+.pillar-card p{font-size:.95rem;margin-top:10px;}
+.pillar-card a.more{display:inline-block;margin-top:16px;font-size:.9rem;font-weight:700;color:var(--coral-700);}
+.i-navy{background:var(--navy-100);color:var(--navy);}
+.i-gold{background:var(--gold-100);color:var(--gold-600);}
+.i-coral{background:var(--coral-100);color:var(--coral-700);}
+
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:8px;}
+
+/* grids & cards */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:42px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:42px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:42px;}
+.card{background:var(--paper);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .15s ease, transform .15s ease;}
+.card:hover{box-shadow:0 16px 34px rgba(20,39,78,.10);transform:translateY(-3px);}
+.card img{border-radius:0;aspect-ratio:16/10;object-fit:cover;width:100%;}
+.card-body{padding:24px;}
+.card-tag{font-family:var(--font-mono);font-weight:500;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--coral-700);background:var(--coral-100);display:inline-block;padding:5px 11px;border-radius:999px;margin-bottom:14px;}
+.card-tag.navy{color:var(--navy);background:var(--navy-100);}
+.card-tag.gold{color:var(--gold-600);background:var(--gold-100);}
+.card h3{margin-bottom:8px;}
+.card p{font-size:.94rem;}
+.card-meta{display:flex;gap:14px;margin-top:16px;font-size:.83rem;color:var(--text-muted);font-weight:600;border-top:1px solid var(--border);padding-top:14px;flex-wrap:wrap;}
+
+.section-alt{background:var(--paper);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.section-tint{background:linear-gradient(180deg,#F1EDE2 0%, var(--cream) 100%);}
+
+/* CTA band */
+.cta-band{background:var(--grad-hero);color:#fff;border-radius:26px;padding:56px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;}
+.cta-band h2{color:#fff;margin-bottom:8px;}
+.cta-band p{color:#DDE3F4;font-size:1.02rem;}
+.cta-actions{display:flex;gap:14px;flex-wrap:wrap;}
+
+/* node divider (semnătura vizuală) */
+.node-divider{display:flex;align-items:center;gap:10px;margin:0 auto 20px;width:fit-content;}
+.node-divider .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.node-divider .line{width:64px;height:2px;border-radius:2px;background:var(--grad-cta);}
+
+/* form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px;}
+.form-grid .full{grid-column:1/-1;}
+label{display:block;font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:7px;}
+input,select,textarea{width:100%;padding:13px 15px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.98rem;background:#fff;color:var(--text);}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--coral);}
+textarea{resize:vertical;min-height:120px;}
+.form-note{font-size:.85rem;margin-top:14px;}
+
+/* page-hero style block used inside each in-page section */
+.section-intro{background:var(--navy);color:#fff;border-radius:28px;padding:52px;margin-bottom:8px;}
+.section-intro .eyebrow{color:var(--gold);}
+.section-intro .eyebrow::before{background:#fff;}
+.section-intro h2{color:#fff;}
+.section-intro p.lede{color:#DDE3F4;}
+
+/* timeline */
+.timeline{position:relative;margin-top:42px;padding-left:28px;border-left:2px solid var(--border);}
+.timeline-item{position:relative;padding-bottom:34px;}
+.timeline-item::before{content:"";position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--grad-cta);border:3px solid #fff;box-shadow:0 0 0 2px var(--gold);}
+.timeline-item h4{margin-bottom:5px;font-family:var(--font-display);}
+.timeline-item p{font-size:.94rem;}
+
+/* utility */
+.tag-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.pill{font-size:.9rem;font-weight:700;padding:10px 18px;border-radius:999px;border:1.5px solid var(--border);color:var(--text-muted);cursor:pointer;background:#fff;font-family:var(--font-display);}
+.pill.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+.badge-list{display:flex;flex-direction:column;gap:15px;margin-top:24px;}
+.badge-item{display:flex;gap:14px;align-items:flex-start;}
+.badge-item .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);margin-top:7px;flex:none;}
+.badge-item h4{font-family:var(--font-display);margin-bottom:2px;color:var(--navy);}
+
+.access-strip{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin-top:34px;}
+.access-item{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--navy);font-size:.96rem;}
+.access-item .ico{width:34px;height:34px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(20,39,78,.10);}
+
+.skip-link{position:absolute;left:-999px;top:auto;background:var(--navy);color:#fff;padding:12px 18px;border-radius:8px;z-index:100;}
+.skip-link:focus{left:16px;top:16px;}
+
+@media (max-width:980px){
+  .hero-grid,.grid-2,.pillars,.grid-3,.grid-4{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .stat-strip .container{grid-template-columns:1fr 1fr;gap:24px;}
+  .stat{border-left:none;}
+  .cta-band,.section-intro{padding:40px 26px;}
+  .cta-band{flex-direction:column;text-align:center;}
+  section{padding:60px 0;}
+  .form-grid{grid-template-columns:1fr;}
+  .floating-chip{display:none;}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#continut">Sari la conținut</a>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="#acasa" class="brand">
+      <svg class="mark" viewBox="0 0 60 60" aria-hidden="true">
+        <polygon points="30,4 54,17 54,43 30,56 6,43 6,17" fill="var(--navy)" stroke="var(--gold)" stroke-width="3"/>
+        <circle cx="30" cy="30" r="7" fill="var(--gold)"/>
+        <line x1="30" y1="30" x2="30" y2="14" stroke="var(--coral)" stroke-width="2.5"/>
+        <line x1="30" y1="30" x2="17" y2="40" stroke="var(--coral)" stroke-width="2.5"/>
+        <line x1="30" y1="30" x2="43" y2="40" stroke="var(--coral)" stroke-width="2.5"/>
+        <circle cx="30" cy="14" r="4" fill="var(--coral)"/>
+        <circle cx="17" cy="40" r="4" fill="var(--coral)"/>
+        <circle cx="43" cy="40" r="4" fill="var(--coral)"/>
+      </svg>
+      Edu<b>Nexoria</b>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#acasa" data-nav>Acasă</a></li>
+      <li><a href="#despre" data-nav>Despre noi</a></li>
+      <li><a href="#cursuri" data-nav>Cursuri</a></li>
+      <li><a href="#voluntariat" data-nav>Voluntariat</a></li>
+      <li><a href="#proiecte" data-nav>Caritate</a></li>
+      <li><a href="#resurse" data-nav>Resurse</a></li>
+      <li><a href="#blog" data-nav>Blog</a></li>
+      <li><a href="#contact" data-nav>Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#implica" class="btn btn-gold">Donează</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Deschide meniul" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="continut">
+
+<!-- ===================== ACASĂ ===================== -->
+<section id="acasa" class="hero">
+  <svg class="hero-net" viewBox="0 0 1160 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g stroke="rgba(255,255,255,.28)" stroke-width="1.2">
+      <line x1="120" y1="450" x2="220" y2="500"/>
+      <line x1="220" y1="500" x2="90" y2="530"/>
+      <line x1="960" y1="60" x2="1060" y2="110"/>
+      <line x1="1060" y1="110" x2="1010" y2="200"/>
+      <line x1="1010" y1="200" x2="1110" y2="230"/>
+    </g>
+    <g fill="#F2B705">
+      <circle cx="120" cy="450" r="5"/><circle cx="220" cy="500" r="5"/><circle cx="90" cy="530" r="5"/>
+      <circle cx="960" cy="60" r="5"/><circle cx="1060" cy="110" r="5"/><circle cx="1010" cy="200" r="5"/><circle cx="1110" cy="230" r="5"/>
+    </g>
+  </svg>
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow on-dark">Organizație neguvernamentală · educație pentru toți</p>
+      <h1>Educăm. Conectăm.<br>Inspirăm fiecare generație.</h1>
+      <p class="lede">Cursuri de formare profesională, educație non-formală, voluntariat și proiecte caritabile — într-o singură comunitate deschisă tinerilor, adulților și seniorilor deopotrivă, indiferent de experiența lor cu tehnologia.</p>
+      <div class="hero-actions">
+        <a href="#cursuri" class="btn btn-white btn-lg">Descoperă cursurile</a>
+        <a href="#voluntariat" class="btn btn-outline btn-lg">Devino voluntar</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://images.unsplash.com/photo-1758873268745-dd2cf0d677b5?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Tineri colaborând la un laptop într-un spațiu luminos, modern" loading="lazy">
+      <div class="floating-chip c1"><span class="ball"></span> +340 voluntari activi</div>
+      <div class="floating-chip c2">Ateliere AI &amp; tehnologie</div>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="container">
+    <div class="stat"><div class="num">2.400+</div><div class="label">cursanți formați</div></div>
+    <div class="stat"><div class="num">340</div><div class="label">voluntari activi</div></div>
+    <div class="stat"><div class="num">58</div><div class="label">proiecte caritabile</div></div>
+    <div class="stat"><div class="num">19</div><div class="label">comunități sprijinite</div></div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">Ce facem</p><h2>Trei direcții, un singur scop: educația care schimbă vieți</h2></div></div>
+    <div class="pillars">
+      <div class="pillar-card">
+        <div class="icon i-navy">🎓</div>
+        <h3>Formare &amp; cursuri</h3>
+        <p>Cursuri de formare profesională autorizate, programe non-formale și ateliere de tehnologie, pentru tineri și adulți la orice etapă de carieră.</p>
+        <a class="more" href="#cursuri">Vezi cursurile →</a>
+      </div>
+      <div class="pillar-card">
+        <div class="icon i-coral">🤝</div>
+        <h3>Voluntariat</h3>
+        <p>Oportunități de voluntariat în educație, mentorat și organizare de evenimente comunitare, deschise oricui vrea să contribuie.</p>
+        <a class="more" href="#voluntariat">Devino voluntar →</a>
+      </div>
+      <div class="pillar-card">
+        <div class="icon i-gold">💛</div>
+        <h3>Acțiuni caritabile</h3>
+        <p>Proiecte de sprijin pentru copii, familii vulnerabile, seniori și comunități rurale, susținute de donatori și parteneri.</p>
+        <a class="more" href="#proiecte">Vezi proiectele →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tint">
+  <div class="container">
+    <div class="node-divider"><span class="dot"></span><span class="line"></span><span class="dot"></span></div>
+    <div class="section-head" style="justify-content:center;text-align:center;flex-direction:column;">
+      <p class="eyebrow" style="justify-content:center;">Un site pentru toată lumea</p>
+      <h2>Prietenos cu orice vârstă și orice nivel tehnologic</h2>
+    </div>
+    <div class="access-strip">
+      <div class="access-item"><span class="ico">🔠</span> Text mare, ușor de citit</div>
+      <div class="access-item"><span class="ico">🖱️</span> Butoane mari, simplu de apăsat</div>
+      <div class="access-item"><span class="ico">🗣️</span> Limbaj simplu, fără jargon</div>
+      <div class="access-item"><span class="ico">📞</span> Suport telefonic pentru înscrieri</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DESPRE NOI ===================== -->
+<section id="despre" class="section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Despre noi</p>
+      <h2>O echipă de educatori și voluntari care cred în educație ca motor de schimbare</h2>
+      <p class="lede">EduNexoria este o asociație non-profit înființată de formatori, profesori și voluntari care au observat aceeași lipsă: prea mulți oameni renunță la educație din lipsă de acces, de îndrumare sau de resurse — indiferent de vârstă.</p>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <p class="eyebrow">Misiunea noastră</p>
+        <h3>Educație accesibilă, pentru oricine vrea să învețe</h3>
+        <p>Credem că fiecare persoană merită o șansă reală de a-și construi un viitor, indiferent de mediul din care provine. De aceea combinăm formarea profesională, educația non-formală și acțiunile caritabile într-un singur ecosistem de sprijin.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Viziunea noastră</p>
+        <h3>Comunități conectate prin cunoaștere</h3>
+        <p>Ne dorim comunități în care educația circulă liber între generații — unde tinerii învață tehnologie, iar seniorii le transmit experiență, în ambele sensuri.</p>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar-card">
+        <div class="icon i-navy">◎</div>
+        <h3>Acces egal</h3>
+        <p>Majoritatea programelor sunt gratuite sau la preț redus, pentru a elimina barierele financiare din educație.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="icon i-coral">◈</div>
+        <h3>Transparență</h3>
+        <p>Publicăm rapoarte anuale de activitate și de folosire a fondurilor, pentru fiecare donator și partener.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="icon i-gold">◇</div>
+        <h3>Comunitate pentru toți</h3>
+        <p>Construim relații pe termen lung cu cursanții, voluntarii și beneficiarii noștri de toate vârstele.</p>
+      </div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:64px;">Parcursul nostru</p>
+    <h3>De la un grup de voluntari la o rețea națională</h3>
+    <div class="timeline">
+      <div class="timeline-item"><h4>2018 — Primul atelier de voluntariat</h4><p>Un grup de 12 profesori și studenți organizează primele ateliere gratuite de educație non-formală pentru liceeni.</p></div>
+      <div class="timeline-item"><h4>2020 — Înființarea asociației EduNexoria</h4><p>Activitatea se formalizează ca ONG, iar primele cursuri de formare profesională sunt autorizate.</p></div>
+      <div class="timeline-item"><h4>2022 — Extindere în mediul rural</h4><p>Lansăm proiecte caritabile dedicate comunităților rurale, alături de rețeaua de voluntari extinsă la peste 200 de persoane.</p></div>
+      <div class="timeline-item"><h4>2026 — 2.400+ cursanți formați</h4><p>EduNexoria ajunge la 19 comunități sprijinite, cu programe dedicate tuturor generațiilor.</p></div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:64px;">Echipa</p>
+    <h3>Oamenii din spatele EduNexoria</h3>
+    <div class="grid-3">
+      <div class="card"><div class="card-body">
+        <h3>Ioana Marinescu</h3><p class="card-tag navy">Director executiv</p>
+        <p>Fost profesor de liceu, coordonează strategia și partenariatele asociației de la înființare.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3>Bogdan Ștefan</h3><p class="card-tag navy">Coordonator formare profesională</p>
+        <p>Se ocupă de autorizarea și dezvoltarea cursurilor, alături de o rețea de 30 de formatori.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3>Alexandra Pop</h3><p class="card-tag navy">Coordonator voluntariat</p>
+        <p>Recrutează, formează și sprijină comunitatea de voluntari din toate proiectele active.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CURSURI & FORMARE ===================== -->
+<section id="cursuri">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">Cursuri &amp; formare</p><h2>Învață o meserie, o abilitate nouă sau primii pași în tehnologie</h2><p class="lede">Cursuri autorizate și programe non-formale, explicate simplu, pas cu pas — potrivite atât începătorilor, cât și celor care vor să avanseze.</p></div></div>
+
+    <div class="tag-row" role="group" aria-label="Filtrează cursurile">
+      <button class="pill active" data-filter="toate">Toate</button>
+      <button class="pill" data-filter="formare">Formare profesională</button>
+      <button class="pill" data-filter="tehnologie">Tehnologie</button>
+      <button class="pill" data-filter="nonformal">Non-formal</button>
+      <button class="pill" data-filter="tineri">Pentru tineri</button>
+      <button class="pill" data-filter="mediu">Mediu &amp; sustenabilitate</button>
+    </div>
+
+    <div class="grid-3">
+      <div class="card" data-category="formare">
+        <img src="https://images.pexels.com/photos/37831090/pexels-photo-37831090.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Cursant lucrând la calculator într-o sală de curs" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag navy">Formare profesională</span>
+          <h3>Competențe digitale de bază</h3>
+          <p>Curs autorizat ANC, gândit pentru cei fără nicio experiență anterioară în IT.</p>
+          <div class="card-meta"><span>8 săptămâni</span><span>Online</span><span>Gratuit</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="tehnologie">
+        <img src="https://images.pexels.com/photos/18734744/pexels-photo-18734744.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Tineri participând la un atelier despre tehnologie" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag">Tehnologie</span>
+          <h3>Introducere prietenoasă în AI</h3>
+          <p>Ce este inteligența artificială și cum o folosim responsabil, fără cunoștințe tehnice necesare.</p>
+          <div class="card-meta"><span>4 sesiuni</span><span>Hibrid</span><span>Gratuit</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="tineri">
+        <img src="https://images.pexels.com/photos/5211437/pexels-photo-5211437.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Grup de liceeni discutând într-un atelier de orientare vocațională" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag gold">Orientare vocațională</span>
+          <h3>Ghid în carieră pentru liceeni</h3>
+          <p>Ateliere de autocunoaștere și explorare a meseriilor, cu mentori din diverse domenii.</p>
+          <div class="card-meta"><span>4 sesiuni</span><span>Hibrid</span><span>Gratuit</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="formare">
+        <img src="https://images.pexels.com/photos/7680465/pexels-photo-7680465.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Persoană economisind bani într-un borcan de sticlă, simbol al educației financiare" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag navy">Formare profesională</span>
+          <h3>Educație financiară</h3>
+          <p>Bugetare personală, economisire și noțiuni de bază despre credite, explicate simplu, pentru orice vârstă.</p>
+          <div class="card-meta"><span>6 săptămâni</span><span>Hibrid</span><span>Preț redus</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="nonformal">
+        <img src="https://images.pexels.com/photos/9433169/pexels-photo-9433169.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Grup de tineri lucrând în echipă la un proiect" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag">Non-formal</span>
+          <h3>Comunicare &amp; lucru în echipă</h3>
+          <p>Program aplicat de soft-skills, pentru primii pași în viața profesională.</p>
+          <div class="card-meta"><span>6 săptămâni</span><span>Fizic</span><span>Preț redus</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="nonformal">
+        <img src="https://images.pexels.com/photos/7331674/pexels-photo-7331674.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Senior folosind un telefon mobil" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag gold">Non-formal</span>
+          <h3>Tehnologie de bază pentru seniori</h3>
+          <p>Curs relaxat, fără presiune, despre telefon, apeluri video și siguranță online.</p>
+          <div class="card-meta"><span>5 sesiuni</span><span>Fizic</span><span>Gratuit</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="mediu">
+        <img src="https://images.pexels.com/photos/7475829/pexels-photo-7475829.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Ateliere practice despre reciclare și reutilizarea materialelor" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag navy">Mediu &amp; sustenabilitate</span>
+          <h3>Economie circulară</h3>
+          <p>Principii de reducere, reutilizare și reciclare, aplicate la nivel de comunitate, business mic și gospodărie proprie.</p>
+          <div class="card-meta"><span>6 săptămâni</span><span>Hibrid</span><span>Preț redus</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="mediu">
+        <img src="https://images.pexels.com/photos/12943046/pexels-photo-12943046.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Panouri solare pe acoperișul unei case, exemplu de eficiență energetică" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag navy">Mediu &amp; sustenabilitate</span>
+          <h3>Eficiență energetică</h3>
+          <p>Cum reducem consumul de energie acasă și la locul de muncă — izolație, iluminat eficient, panouri solare și obiceiuri simple cu impact real.</p>
+          <div class="card-meta"><span>8 săptămâni</span><span>Hibrid</span><span>Preț redus</span></div>
+        </div>
+      </div>
+      <div class="card" data-category="mediu">
+        <img src="https://images.pexels.com/photos/9800000/pexels-photo-9800000.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Vehicul electric în încărcare, exemplu de vehicule electrice" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag navy">Mediu &amp; sustenabilitate</span>
+          <h3>Vehicule electrice</h3>
+          <p>Introducere în funcționarea motoarelor electrice și a mașinilor electrice, avantaje și provocări pentru mobilitatea viitorului.</p>
+          <div class="card-meta"><span>7 săptămâni</span><span>Fizic</span><span>Preț redus</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="align-items:center;margin-top:72px;">
+      <div>
+        <p class="eyebrow">Cum funcționează</p>
+        <h3>De la înscriere, la primul job sau abilitate nouă</h3>
+        <div class="badge-list">
+          <div class="badge-item"><span class="dot"></span><div><h4>1. Alegi cursul potrivit</h4><p>Filtrezi după domeniu, format și nivel — sau ne suni și te ajutăm noi.</p></div></div>
+          <div class="badge-item"><span class="dot"></span><div><h4>2. Te înscrii în câteva minute</h4><p>Formular scurt, online sau telefonic, cu confirmare rapidă.</p></div></div>
+          <div class="badge-item"><span class="dot"></span><div><h4>3. Participi la curs</h4><p>Sesiuni explicate pas cu pas, cu formatori disponibili pentru întrebări.</p></div></div>
+          <div class="badge-item"><span class="dot"></span><div><h4>4. Primești certificarea</h4><p>La final, primești certificat recunoscut sau diplomă de participare.</p></div></div>
+        </div>
+      </div>
+      <img src="https://images.pexels.com/photos/8926900/pexels-photo-8926900.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=600&amp;fit=crop" alt="Formator ajutând un cursant la un laptop într-o sală luminoasă" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VOLUNTARIAT ===================== -->
+<section id="voluntariat" class="section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Voluntariat</p>
+      <h2>Timpul și experiența ta pot schimba un parcurs educațional</h2>
+      <p class="lede">Căutăm voluntari de toate vârstele și din toate domeniile — de la studenți la profesioniști cu experiență — pentru mentorat, predare și organizare de evenimente.</p>
+      <div class="hero-actions"><a href="#inscriere-voluntar" class="btn btn-gold">Înscrie-te ca voluntar</a></div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:60px;">De ce să fii voluntar la noi</p>
+    <div class="pillars">
+      <div class="pillar-card"><div class="icon i-navy">📜</div><h3>Certificat de voluntariat</h3><p>Recunoaștere oficială a orelor de voluntariat, utilă în CV și în dosarele de studii.</p></div>
+      <div class="pillar-card"><div class="icon i-coral">🌱</div><h3>Experiență reală</h3><p>Predare, mentorat, organizare de evenimente — abilități pe care le poți folosi oriunde.</p></div>
+      <div class="pillar-card"><div class="icon i-gold">🧑‍🤝‍🧑</div><h3>O comunitate caldă</h3><p>Alături de zeci de voluntari de toate vârstele, uniți de aceeași dorință de a ajuta.</p></div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:60px;">Oportunități active</p>
+    <h3>Alege rolul care ți se potrivește</h3>
+    <div class="grid-3">
+      <div class="card"><div class="card-body">
+        <span class="card-tag navy">Mentorat</span><h3>Mentor pentru liceeni</h3>
+        <p>Îndrumi un grup mic de elevi în alegerea unei direcții de carieră, o oră pe săptămână.</p>
+        <div class="card-meta"><span>2h/săpt.</span><span>Online sau fizic</span></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <span class="card-tag">Predare</span><h3>Asistent formator la cursuri</h3>
+        <p>Sprijini formatorii la cursurile de competențe digitale sau tehnologie pentru seniori.</p>
+        <div class="card-meta"><span>3h/săpt.</span><span>Fizic</span></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <span class="card-tag gold">Organizare evenimente</span><h3>Voluntar la evenimente comunitare</h3>
+        <p>Ajuți la organizarea taberelor educaționale și a evenimentelor caritabile locale.</p>
+        <div class="card-meta"><span>Flexibil</span><span>Fizic</span></div>
+      </div></div>
+    </div>
+
+    <div id="inscriere-voluntar" style="max-width:760px;margin:72px auto 0;">
+      <p class="eyebrow">Formular de înscriere</p>
+      <h3>Devino voluntar EduNexoria</h3>
+      <p class="lede">Completează formularul de mai jos și te contactăm în maximum 3 zile lucrătoare.</p>
+      <form class="form-grid" onsubmit="return false;">
+        <div><label for="v-nume">Nume complet</label><input id="v-nume" name="v-nume" type="text" autocomplete="name" placeholder="Numele tău"></div>
+        <div><label for="v-email">E-mail</label><input id="v-email" name="v-email" type="email" autocomplete="email" placeholder="nume@exemplu.ro"></div>
+        <div><label for="v-tel">Telefon</label><input id="v-tel" name="v-tel" type="tel" autocomplete="tel" placeholder="07xx xxx xxx"></div>
+        <div>
+          <label for="v-rol">Domeniu de interes</label>
+          <select id="v-rol" name="v-rol">
+            <option>Mentorat</option>
+            <option>Predare / asistență la cursuri</option>
+            <option>Organizare evenimente</option>
+            <option>Altceva</option>
+          </select>
+        </div>
+        <div class="full"><label for="v-mesaj">De ce vrei să fii voluntar la EduNexoria?</label><textarea id="v-mesaj" name="v-mesaj" placeholder="Câteva rânduri despre tine..."></textarea></div>
+        <div class="full"><button type="submit" class="btn btn-primary btn-lg">Trimite înscrierea</button>
+          <p class="form-note">Acest formular este demonstrativ — conectează-l la un serviciu ca Formspree pentru a primi mesaje reale.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROIECTE CARITABILE ===================== -->
+<section id="proiecte">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Proiecte caritabile</p>
+      <h2>Sprijin concret pentru copii, familii și comunități vulnerabile</h2>
+      <p class="lede">De la rechizite școlare la echipamente donate pentru sate izolate — fiecare proiect pornește de la o nevoie reală, identificată împreună cu comunitatea.</p>
+    </div>
+
+    <p class="eyebrow" style="margin-top:60px;">În desfășurare</p>
+    <h3>Proiecte active acum</h3>
+    <div class="grid-3">
+      <div class="card">
+        <img src="https://images.pexels.com/photos/28503359/pexels-photo-28503359.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Copii primind ghiozdane și rechizite școlare" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag gold">Copii</span><h3>Ghiozdane pline, an școlar liniștit</h3>
+          <p>Rechizite și ghiozdane pentru 400 de copii din familii vulnerabile, la începutul anului școlar.</p>
+          <div class="card-meta"><span>12 localități</span><span>68% finanțat</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/18603739/pexels-photo-18603739.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Sat între dealuri, comunitate rurală sprijinită de EduNexoria" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag navy">Comunități rurale</span><h3>Calculatoare pentru sate izolate</h3>
+          <p>Donăm și instalăm calculatoare recondiționate în școli din comunități fără acces la tehnologie.</p>
+          <div class="card-meta"><span>5 sate</span><span>45% finanțat</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/5962043/pexels-photo-5962043.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Voluntari servind masa unor persoane vârstnice" loading="lazy">
+        <div class="card-body">
+          <span class="card-tag">Seniori</span><h3>Companie &amp; mese calde pentru seniori</h3>
+          <p>Vizite săptămânale și mese calde pentru vârstnici izolați social din comunitățile sprijinite.</p>
+          <div class="card-meta"><span>4 comunități</span><span>80% finanțat</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:60px;">Rezultate</p>
+    <h3>Impact verificabil, raportat public</h3>
+    <div class="grid-4">
+      <div class="stat" style="border-left:none;"><div class="num">400+</div><div class="label">copii sprijiniți în 2025</div></div>
+      <div class="stat" style="border-left:none;"><div class="num">120</div><div class="label">calculatoare donate</div></div>
+      <div class="stat" style="border-left:none;"><div class="num">58</div><div class="label">proiecte finalizate</div></div>
+      <div class="stat" style="border-left:none;"><div class="num">100%</div><div class="label">fonduri raportate public</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESURSE EDUCAȚIONALE ===================== -->
+<section id="resurse" class="section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Resurse educaționale</p>
+      <h2>Materiale gratuite, explicate simplu — pentru orice vârstă</h2>
+      <p class="lede">Ghiduri, articole și înregistrări video, gratuite pentru toată lumea. Nu ai nevoie de cont sau de cunoștințe tehnice pentru a le folosi.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1768839720936-87ce3adf2d08?auto=format&amp;fit=crop&amp;w=600&amp;h=400&amp;q=80" alt="Ghid ilustrat despre siguranță online" loading="lazy">
+        <div class="card-body"><span class="card-tag navy">Ghid</span><h3>Siguranță online, pe înțelesul tuturor</h3><p>Cum recunoști o înșelătorie online și cum îți protejezi datele.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Mână umană atingând o mână robotică, simbol al inteligenței artificiale" loading="lazy">
+        <div class="card-body"><span class="card-tag">Video</span><h3>Ce este inteligența artificială? (30 min)</h3><p>Înregistrare webinar cu exemple simple, potrivite pentru cei care aud termenul „AI" prima dată.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/6684265/pexels-photo-6684265.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Elev completând un test de orientare vocațională pe hârtie" loading="lazy">
+        <div class="card-body"><span class="card-tag gold">Instrument</span><h3>Testul de orientare vocațională</h3><p>Chestionar descărcabil, gratuit, pentru liceenii care nu știu ce meserie li s-ar potrivi.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/5989943/pexels-photo-5989943.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Persoană citind un ghid despre redactarea unui CV" loading="lazy">
+        <div class="card-body"><span class="card-tag navy">Ghid</span><h3>Primul CV, pas cu pas</h3><p>Model editabil și exemple concrete, pentru cei aflați la primul job.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/3768148/pexels-photo-3768148.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Senior folosind un smartphone cu ajutorul unui ghid pas cu pas" loading="lazy">
+        <div class="card-body"><span class="card-tag">Ghid</span><h3>Telefonul mobil, explicat pentru seniori</h3><p>Pași simpli pentru apeluri video, mesaje și aplicații de bază.</p></div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/8363102/pexels-photo-8363102.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Voluntar organizând un atelier educațional pentru copii" loading="lazy">
+        <div class="card-body"><span class="card-tag gold">Kit</span><h3>Kit pentru voluntari la prima activitate</h3><p>Checklist și materiale pregătite pentru voluntarii aflați la prima experiență.</p></div>
+      </div>
+    </div>
+
+    <div class="cta-band" style="margin-top:64px;">
+      <div><h2>Primești resurse noi direct pe e-mail</h2><p>Ne abonezi la newsletter și primești lunar ghiduri și oportunități noi de învățare.</p></div>
+      <form class="cta-actions" onsubmit="return false;" style="gap:12px;">
+        <label for="newsletter-email" style="position:absolute;left:-9999px;">Adresă de e-mail</label>
+        <input id="newsletter-email" type="email" placeholder="adresa ta de e-mail" style="min-width:240px;border-radius:999px;border:none;padding:15px 20px;">
+        <button type="submit" class="btn btn-white btn-lg">Abonează-te</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IMPLICĂ-TE / DONEAZĂ ===================== -->
+<section id="implica">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Implică-te</p>
+      <h2>Orice contribuție, mică sau mare, ajunge la cineva care are nevoie</h2>
+      <p class="lede">Poți dona o singură dată, lunar, poți redirecționa 3,5% din impozit fără costuri suplimentare, sau poți deveni partener al EduNexoria.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar-card">
+        <div class="icon i-navy">💳</div><h3>Donație unică sau lunară</h3>
+        <p>Alegi suma și frecvența — chiar și 20 lei lunar susțin un curs gratuit pentru un tânăr.</p>
+        <a class="btn btn-primary" style="margin-top:16px;" href="#donatie">Donează acum</a>
+      </div>
+      <div class="pillar-card">
+        <div class="icon i-coral">🧾</div><h3>3,5% din impozitul pe venit</h3>
+        <p>Nu te costă nimic în plus. Completezi formularul 230 sau bifezi opțiunea în declarația unică.</p>
+        <a class="btn btn-outline-navy" style="margin-top:16px;" href="#doi35">Vezi cum</a>
+      </div>
+      <div class="pillar-card">
+        <div class="icon i-gold">🤝</div><h3>Parteneriat sau sponsorizare</h3>
+        <p>Pentru companii care vor să susțină educația prin sponsorizare sau voluntariat corporate.</p>
+        <a class="btn btn-outline-navy" style="margin-top:16px;" href="#contact">Contactează-ne</a>
+      </div>
+    </div>
+
+    <div id="donatie" class="section-tint" style="border-radius:26px;padding:52px;text-align:center;margin-top:60px;">
+      <p class="eyebrow" style="justify-content:center;">Donație</p>
+      <h3>Alege suma pe care vrei să o donezi</h3>
+      <p class="lede" style="margin:0 auto;">100% din donații sunt raportate public în rapoartele noastre anuale.</p>
+      <div class="tag-row" style="justify-content:center;" role="group" aria-label="Alege suma donației">
+        <button class="pill" data-amount="20">20 lei</button>
+        <button class="pill active" data-amount="50">50 lei</button>
+        <button class="pill" data-amount="100">100 lei</button>
+        <button class="pill" data-amount="200">200 lei</button>
+        <button class="pill" data-amount="altul">Altă sumă</button>
+      </div>
+      <div style="margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="#" class="btn btn-primary btn-lg">Donație unică</a>
+        <a href="#" class="btn btn-outline-navy btn-lg">Donație lunară</a>
+      </div>
+      <p class="form-note">Plată securizată prin card bancar. Ai nevoie de ajutor? Sună-ne la 0800 000 000.</p>
+    </div>
+
+    <div id="doi35" class="grid-2" style="align-items:center;margin-top:72px;">
+      <div>
+        <p class="eyebrow">3,5% din impozit</p>
+        <h3>Cel mai simplu mod de a ajuta — fără niciun cost</h3>
+        <div class="badge-list">
+          <div class="badge-item"><span class="dot"></span><div><h4>Dacă ești angajat</h4><p>Completezi formularul 230 și îl trimiți angajatorului sau la ANAF, direct sau prin Spațiul Privat Virtual.</p></div></div>
+          <div class="badge-item"><span class="dot"></span><div><h4>Dacă ai venituri independente</h4><p>Bifezi opțiunea de redirecționare direct în declarația unică (formular 212).</p></div></div>
+          <div class="badge-item"><span class="dot"></span><div><h4>Ai nevoie de datele noastre?</h4><p>Îți trimitem gratuit formularul completat cu datele EduNexoria — scrie-ne pe e-mail.</p></div></div>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="margin-top:22px;">Cere formularul completat</a>
+      </div>
+      <img src="https://images.pexels.com/photos/6863336/pexels-photo-6863336.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=480&amp;fit=crop" alt="Persoană completând un formular de redirecționare a impozitului" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BLOG ===================== -->
+<section id="blog" class="section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow">Blog &amp; noutăți</p>
+      <h2>Povești, ghiduri și noutăți din comunitatea EduNexoria</h2>
+      <p class="lede">Articole scrise simplu, fără jargon — despre educație, tehnologie, voluntariat și oamenii din spatele proiectelor noastre.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <img src="https://images.pexels.com/photos/5539293/pexels-photo-5539293.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Tineri participând la primul lor atelier de tehnologie" loading="lazy">
+        <div class="card-body"><span class="card-tag navy">Tehnologie</span><h3>Ce am învățat din primul laborator de AI pentru liceeni</h3><p>30 de tineri, zero experiență tehnică, o după-amiază de întrebări curajoase.</p><div class="card-meta"><span>12 iulie 2026</span><span>4 min citire</span></div></div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/28503359/pexels-photo-28503359.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Voluntari pregătind ghiozdane pentru copii" loading="lazy">
+        <div class="card-body"><span class="card-tag gold">Comunitate</span><h3>În culise: cum pregătim 400 de ghiozdane într-o săptămână</h3><p>Logistica din spatele campaniei „Ghiozdane pline, an școlar liniștit".</p><div class="card-meta"><span>28 iunie 2026</span><span>5 min citire</span></div></div>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/6248437/pexels-photo-6248437.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Senior zâmbind în timp ce folosește o tabletă" loading="lazy">
+        <div class="card-body"><span class="card-tag">Poveste</span><h3>La 68 de ani, Elena a învățat să facă apeluri video</h3><p>Povestea unei cursante senior care nu s-a temut să înceapă de la zero.</p><div class="card-meta"><span>15 iunie 2026</span><span>3 min citire</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="container grid-2">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2>Suntem aici, indiferent cum preferi să ne scrii</h2>
+      <p class="lede">E-mail, telefon sau formular — alege ce ți se potrivește. Răspundem în maximum 2 zile lucrătoare.</p>
+      <form class="form-grid" onsubmit="return false;">
+        <div><label for="c-nume">Nume complet</label><input id="c-nume" name="c-nume" type="text" autocomplete="name" placeholder="Numele tău"></div>
+        <div><label for="c-email">E-mail</label><input id="c-email" name="c-email" type="email" autocomplete="email" placeholder="nume@exemplu.ro"></div>
+        <div class="full">
+          <label for="c-subiect">Motivul mesajului</label>
+          <select id="c-subiect" name="c-subiect">
+            <option>Vreau să mă înscriu la un curs</option>
+            <option>Vreau să devin voluntar</option>
+            <option>Vreau să donez / să devin partener</option>
+            <option>Altceva</option>
+          </select>
+        </div>
+        <div class="full"><label for="c-mesaj">Mesajul tău</label><textarea id="c-mesaj" name="c-mesaj" placeholder="Scrie aici..."></textarea></div>
+        <div class="full"><button type="submit" class="btn btn-primary btn-lg">Trimite mesajul</button>
+          <p class="form-note">Formular demonstrativ — conectează-l la un serviciu ca Formspree pentru a primi mesaje reale.</p>
+        </div>
+      </form>
+    </div>
+    <div>
+      <p class="eyebrow">Datele noastre</p>
+      <h2>Alte moduri de a ne găsi</h2>
+      <div class="badge-list">
+        <div class="badge-item"><span class="dot"></span><div><h4>Telefon</h4><p>0800 000 000 (apel gratuit, luni–vineri, 9:00–17:00)</p></div></div>
+        <div class="badge-item"><span class="dot"></span><div><h4>E-mail</h4><p>contact@edunexoria.ro</p></div></div>
+        <div class="badge-item"><span class="dot"></span><div><h4>Adresă</h4><p>Str. Educației nr. 10, București</p></div></div>
+        <div class="badge-item"><span class="dot"></span><div><h4>Program vizite</h4><p>Marți și joi, 10:00–14:00, cu programare telefonică</p></div></div>
+      </div>
+      <img src="https://images.pexels.com/photos/8933650/pexels-photo-8933650.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=320&amp;fit=crop" alt="Sediul EduNexoria, o clădire luminoasă și primitoare" style="margin-top:26px;" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="cta-band">
+      <div><h2>Fii parte din schimbare</h2><p>Fie că vrei să înveți, să predai sau să sprijini o cauză — ai loc în comunitatea EduNexoria.</p></div>
+      <div class="cta-actions">
+        <a href="#implica" class="btn btn-white btn-lg">Donează acum</a>
+        <a href="#voluntariat" class="btn btn-outline btn-lg">Devino voluntar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Edu<b>Nexoria</b></div>
+        <p class="footer-tagline">Educăm. Conectăm. Inspirăm. Organizație neguvernamentală dedicată educației și implicării comunitare, pentru toate vârstele.</p>
+      </div>
+      <div><h4>Organizația</h4><a href="#despre">Despre noi</a><a href="#blog">Blog &amp; noutăți</a><a href="#contact">Contact</a></div>
+      <div><h4>Implică-te</h4><a href="#cursuri">Cursuri &amp; formare</a><a href="#voluntariat">Voluntariat</a><a href="#proiecte">Proiecte caritabile</a><a href="#resurse">Resurse educaționale</a></div>
+      <div><h4>Sprijină-ne</h4><a href="#implica">Donează</a><a href="#doi35">Redirecționează 3,5%</a><a href="#implica">Devino partener</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Asociația EduNexoria. Toate drepturile rezervate.</span>
+      <span>CUI 00000000 · Prototip site — conținut demonstrativ</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // meniu mobil
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // filtrare cursuri
+  var pills = document.querySelectorAll('.pill[data-filter]');
+  var cards = document.querySelectorAll('[data-category]');
+  pills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      pills.forEach(function (p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      var filter = pill.getAttribute('data-filter');
+      cards.forEach(function (card) {
+        var show = filter === 'toate' || card.getAttribute('data-category') === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // selector sumă donație
+  var amountPills = document.querySelectorAll('.pill[data-amount]');
+  amountPills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      amountPills.forEach(function (p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+    });
+  });
+
+  // evidențiere link activ în navigare, în funcție de secțiunea vizibilă
+  var sections = document.querySelectorAll('main section[id]');
+  var navItems = document.querySelectorAll('.nav-links a[data-nav]');
+  if ('IntersectionObserver' in window && sections.length && navItems.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          navItems.forEach(function (a) {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+});
+</script>
+</body>
+</html>
