@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ro">
-<head>
+<html lang="ro"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EduNexoria — Educăm. Conectăm. Inspirăm.</title>
@@ -227,6 +226,17 @@ textarea{resize:vertical;min-height:120px;}
   .form-grid{grid-template-columns:1fr;}
   .floating-chip{display:none;}
 }
+
+/* Laborator interactiv: Carbon Calculator */
+.carbon-card{position:relative;border-color:rgba(20,39,78,.22);cursor:pointer;}
+.carbon-card::before{content:"";position:absolute;inset:0;border:2px solid transparent;border-radius:var(--radius);pointer-events:none;transition:border-color .15s ease;z-index:1;}
+.carbon-card:hover::before,.carbon-card:focus-visible::before{border-color:var(--gold);}
+.carbon-card:focus-visible{outline:none;}
+.carbon-card .card-body{position:relative;z-index:2;}
+.carbon-card .carbon-intro{font-size:.86rem;font-weight:700;color:var(--navy);margin-top:2px;}
+.carbon-launch{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding:12px 16px;border-radius:999px;background:var(--grad-btn);color:#fff;font-family:var(--font-display);font-size:.9rem;font-weight:600;box-shadow:0 8px 18px rgba(230,57,80,.22);transition:transform .15s ease,box-shadow .15s ease;}
+.carbon-launch:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(230,57,80,.32);}
+
 </style>
 </head>
 <body>
@@ -237,27 +247,27 @@ textarea{resize:vertical;min-height:120px;}
   <nav class="nav container">
     <a href="#acasa" class="brand">
       <svg class="mark" viewBox="0 0 60 60" aria-hidden="true">
-        <polygon points="30,4 54,17 54,43 30,56 6,43 6,17" fill="var(--navy)" stroke="var(--gold)" stroke-width="3"/>
-        <circle cx="30" cy="30" r="7" fill="var(--gold)"/>
-        <line x1="30" y1="30" x2="30" y2="14" stroke="var(--coral)" stroke-width="2.5"/>
-        <line x1="30" y1="30" x2="17" y2="40" stroke="var(--coral)" stroke-width="2.5"/>
-        <line x1="30" y1="30" x2="43" y2="40" stroke="var(--coral)" stroke-width="2.5"/>
-        <circle cx="30" cy="14" r="4" fill="var(--coral)"/>
-        <circle cx="17" cy="40" r="4" fill="var(--coral)"/>
-        <circle cx="43" cy="40" r="4" fill="var(--coral)"/>
+        <polygon points="30,4 54,17 54,43 30,56 6,43 6,17" fill="var(--navy)" stroke="var(--gold)" stroke-width="3"></polygon>
+        <circle cx="30" cy="30" r="7" fill="var(--gold)"></circle>
+        <line x1="30" y1="30" x2="30" y2="14" stroke="var(--coral)" stroke-width="2.5"></line>
+        <line x1="30" y1="30" x2="17" y2="40" stroke="var(--coral)" stroke-width="2.5"></line>
+        <line x1="30" y1="30" x2="43" y2="40" stroke="var(--coral)" stroke-width="2.5"></line>
+        <circle cx="30" cy="14" r="4" fill="var(--coral)"></circle>
+        <circle cx="17" cy="40" r="4" fill="var(--coral)"></circle>
+        <circle cx="43" cy="40" r="4" fill="var(--coral)"></circle>
       </svg>
       Edu<b>Nexoria</b>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#acasa" data-nav>Acasă</a></li>
-      <li><a href="#despre" data-nav>Despre noi</a></li>
-      <li><a href="#cursuri" data-nav>Cursuri</a></li>
-      <li><a href="#meditatii" data-nav>Meditații</a></li>
-      <li><a href="#voluntariat" data-nav>Voluntariat</a></li>
-      <li><a href="#proiecte" data-nav>Caritate</a></li>
-      <li><a href="#resurse" data-nav>Resurse</a></li>
-      <li><a href="#blog" data-nav>Blog</a></li>
-      <li><a href="#contact" data-nav>Contact</a></li>
+      <li><a href="#acasa" data-nav="" class="active">Acasă</a></li>
+      <li><a href="#despre" data-nav="">Despre noi</a></li>
+      <li><a href="#cursuri" data-nav="">Cursuri</a></li>
+      <li><a href="#meditatii" data-nav="">Meditații</a></li>
+      <li><a href="#voluntariat" data-nav="">Voluntariat</a></li>
+      <li><a href="#proiecte" data-nav="">Caritate</a></li>
+      <li><a href="#resurse" data-nav="">Resurse</a></li>
+      <li><a href="#blog" data-nav="">Blog</a></li>
+      <li><a href="#contact" data-nav="">Contact</a></li>
     </ul>
     <div class="nav-cta">
       <a href="#implica" class="btn btn-gold">Donează</a>
@@ -272,15 +282,15 @@ textarea{resize:vertical;min-height:120px;}
 <section id="acasa" class="hero">
   <svg class="hero-net" viewBox="0 0 1160 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <g stroke="rgba(255,255,255,.28)" stroke-width="1.2">
-      <line x1="120" y1="450" x2="220" y2="500"/>
-      <line x1="220" y1="500" x2="90" y2="530"/>
-      <line x1="960" y1="60" x2="1060" y2="110"/>
-      <line x1="1060" y1="110" x2="1010" y2="200"/>
-      <line x1="1010" y1="200" x2="1110" y2="230"/>
+      <line x1="120" y1="450" x2="220" y2="500"></line>
+      <line x1="220" y1="500" x2="90" y2="530"></line>
+      <line x1="960" y1="60" x2="1060" y2="110"></line>
+      <line x1="1060" y1="110" x2="1010" y2="200"></line>
+      <line x1="1010" y1="200" x2="1110" y2="230"></line>
     </g>
     <g fill="#F2B705">
-      <circle cx="120" cy="450" r="5"/><circle cx="220" cy="500" r="5"/><circle cx="90" cy="530" r="5"/>
-      <circle cx="960" cy="60" r="5"/><circle cx="1060" cy="110" r="5"/><circle cx="1010" cy="200" r="5"/><circle cx="1110" cy="230" r="5"/>
+      <circle cx="120" cy="450" r="5"></circle><circle cx="220" cy="500" r="5"></circle><circle cx="90" cy="530" r="5"></circle>
+      <circle cx="960" cy="60" r="5"></circle><circle cx="1060" cy="110" r="5"></circle><circle cx="1010" cy="200" r="5"></circle><circle cx="1110" cy="230" r="5"></circle>
     </g>
   </svg>
   <div class="container hero-grid">
@@ -498,15 +508,17 @@ textarea{resize:vertical;min-height:120px;}
           <div class="card-meta"><span>6 săptămâni</span><span>Hibrid</span><span>Preț redus</span></div>
         </div>
       </div>
-      <div class="card" data-category="mediu">
+      <article class="card carbon-card" data-category="mediu" data-carbon-url="https://miha9s.github.io/Carbon-aplicatie/" tabindex="0" role="link" aria-label="Deschide aplicația Carbon Calculator într-o filă nouă">
         <img src="https://images.pexels.com/photos/12943046/pexels-photo-12943046.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Panouri solare pe acoperișul unei case, exemplu de eficiență energetică" loading="lazy">
         <div class="card-body">
           <span class="card-tag navy">Mediu &amp; sustenabilitate</span>
           <h3>Eficiență energetică</h3>
           <p>Cum reducem consumul de energie acasă și la locul de muncă — izolație, iluminat eficient, panouri solare și obiceiuri simple cu impact real.</p>
+          <p class="carbon-intro">Laborator interactiv: calculează-ți amprenta de carbon.</p>
           <div class="card-meta"><span>8 săptămâni</span><span>Hibrid</span><span>Preț redus</span></div>
+          <a class="carbon-launch" href="https://miha9s.github.io/Carbon-aplicatie/" target="_blank" rel="noopener noreferrer" aria-label="Deschide aplicația Carbon Calculator într-o filă nouă">🌍 Deschide aplicația Carbon Calculator</a>
         </div>
-      </div>
+      </article>
       <div class="card" data-category="mediu">
         <img src="https://images.pexels.com/photos/9800000/pexels-photo-9800000.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=600&amp;h=400&amp;fit=crop" alt="Vehicul electric în încărcare, exemplu de vehicule electrice" loading="lazy">
         <div class="card-body">
@@ -975,6 +987,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // laborator interactiv: Carbon Calculator
+  document.querySelectorAll('.carbon-card').forEach(function (card) {
+    function openCarbonCalculator() {
+      window.open(card.getAttribute('data-carbon-url'), '_blank', 'noopener,noreferrer');
+    }
+    card.addEventListener('click', function (event) {
+      if (!event.target.closest('a, button')) openCarbonCalculator();
+    });
+    card.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openCarbonCalculator();
+      }
+    });
+  });
+
   // selector sumă donație
   var amountPills = document.querySelectorAll('.pill[data-amount]');
   amountPills.forEach(function (pill) {
@@ -1002,5 +1030,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 </script>
-</body>
-</html>
+
+
+</body></html>
